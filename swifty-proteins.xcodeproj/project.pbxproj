@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58095C1421F8A43B0052C63F /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58095C1321F8A43B0052C63F /* LaunchScreen.swift */; };
 		58939D6921F707CF0062B40C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58939D6821F707CF0062B40C /* AppDelegate.swift */; };
 		58939D6B21F707CF0062B40C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58939D6A21F707CF0062B40C /* ViewController.swift */; };
 		58939D6E21F707CF0062B40C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58939D6C21F707CF0062B40C /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		58095C1321F8A43B0052C63F /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		58939D6521F707CF0062B40C /* swifty-proteins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swifty-proteins.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		58939D6821F707CF0062B40C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		58939D6A21F707CF0062B40C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 			children = (
 				58939D6821F707CF0062B40C /* AppDelegate.swift */,
 				58939D6A21F707CF0062B40C /* ViewController.swift */,
+				58095C1321F8A43B0052C63F /* LaunchScreen.swift */,
 				58939D6C21F707CF0062B40C /* Main.storyboard */,
 				58939D6F21F707D10062B40C /* Assets.xcassets */,
 				58939D7121F707D10062B40C /* LaunchScreen.storyboard */,
@@ -137,6 +140,7 @@
 			files = (
 				58939D6B21F707CF0062B40C /* ViewController.swift in Sources */,
 				58939D6921F707CF0062B40C /* AppDelegate.swift in Sources */,
+				58095C1421F8A43B0052C63F /* LaunchScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
