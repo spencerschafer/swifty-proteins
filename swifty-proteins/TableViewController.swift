@@ -8,11 +8,25 @@
 
 import UIKit
 
-class TableViewController: UIViewController {
-
+class TableViewController: UIViewController, UITableViewDataSource, UITabBarDelegate, UISearchBarDelegate {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.test()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
+
+    
+    func test(){
+        print("Hello")
     }
 }

@@ -18,7 +18,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
-        self.authenticateLogin()
+        self.authenticateWithTouchID()
     }
     
     @IBAction func buttonGo(_ sender: Any) {
@@ -27,13 +27,14 @@ class LoginViewController: UIViewController {
         if (usernameTextField.text == "admin" && passwordTextField.text == "admin" ) {
             print("[Authentication Success]")
             //Segue to TableViewController
+            self.performSegue(withIdentifier: "goButtonSegue", sender: self)
         } else {
             print("[Authentication Failed]")
-            self.authenticationFailed()
+            self.authenticationFailedAlert()
         }
     }
     
-    func authenticateLogin() {
+    func authenticateWithTouchID() {
         let context:LAContext = LAContext()
         
         // Checking if device can be authenticated using TouchID / FaceID
@@ -51,7 +52,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func authenticationFailed() {
+    func authenticationFailedAlert() {
         
         // Creating the alert
         let alert = UIAlertController(title: "Incorrect username or password", message: "Please try again.", preferredStyle: .alert)
