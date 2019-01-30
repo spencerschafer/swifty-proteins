@@ -138,9 +138,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="yYw-er-PIE">
+                            <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="yYw-er-PIE">
                                 <rect key="frame" x="0.0" y="64" width="375" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                <connections>
+                                    <outlet property="delegate" destination="pv4-aU-rak" id="bbD-tH-Fhn"/>
+                                </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Iwd-25-t8f">
                                 <rect key="frame" x="0.0" y="120" width="375" height="547"/>
@@ -174,6 +177,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Cq8-Wh-9eQ"/>
                     </view>
+                    <connections>
+                        <outlet property="proteinSearchBar" destination="yYw-er-PIE" id="iWu-L9-5r2"/>
+                        <outlet property="proteinTableView" destination="Iwd-25-t8f" id="SWv-ef-YvY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GKk-oN-Op0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
