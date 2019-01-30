@@ -8,25 +8,30 @@
 
 import UIKit
 
-class TableViewController: UIViewController, UITableViewDataSource, UITabBarDelegate, UISearchBarDelegate {
+class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    var array: [String] = ["1", "2", "3", "4", "5"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
-        self.test()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let referenceCell =  tableView.dequeueReusableCell(withIdentifier: "prototypeCell", for: indexPath)
+        
+        let label = "[ " + array[indexPath.row] + " ]"
+        referenceCell.textLabel?.text = label
+        return referenceCell
     }
-
     
-    func test(){
-        print("Hello")
+    @IBAction func backButton(_ sender: Any) {
+        performSegue(withIdentifier: "backButtonSegue", sender: self)
     }
+    
 }

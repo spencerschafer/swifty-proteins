@@ -18,6 +18,6 @@ class LaunchScreenViewController: UIViewController {
     }
     
     @objc func delayLaunchScreen() {
-        performSegue(withIdentifier: "LaunchScreenSegue", sender: self)
+        performSegue(withIdentifier: "launchScreenSegue", sender: self)
     }
 }

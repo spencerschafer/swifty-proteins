@@ -21,15 +21,32 @@ class LoginViewController: UIViewController {
         self.authenticateWithTouchID()
     }
     
+    // Hide navigation bar when root view appears
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    // Show navigation bar when root view disappears
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated);
+        super.viewWillDisappear(animated)
+    }
+
     @IBAction func buttonGo(_ sender: Any) {
         
         // Perform authentication with Username and Password instead
         if (usernameTextField.text == "admin" && passwordTextField.text == "admin" ) {
-            print("[Authentication Success]")
             //Segue to TableViewController
             self.performSegue(withIdentifier: "goButtonSegue", sender: self)
+            
+            // Clearing text in textfield
+            usernameTextField.text = nil
+            passwordTextField.text = nil
+            
+            // Setting cursor to usernameTextField
+            usernameTextField.becomeFirstResponder()
         } else {
-            print("[Authentication Failed]")
             self.authenticationFailedAlert()
         }
     }
@@ -40,15 +57,18 @@ class LoginViewController: UIViewController {
         // Checking if device can be authenticated using TouchID / FaceID
         if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil) {
             
-            // TODO: Possibly check for faceID/touchID here
+            // TODO: Check for faceID/touchID here
             context.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Use fingerprint to verify.", reply: { (wasSuccess, error ) in
                 
                 // If fingerprint was valid
                 if wasSuccess {
-                    print("[Authentication Success]")
                     //Segue to TableViewController
+                    self.performSegue(withIdentifier: "goButtonSegue", sender: self)
                 }
             })
+        } else {
+            // Setting cursor to usernameTextField
+            usernameTextField.becomeFirstResponder()
         }
     }
     
@@ -62,8 +82,6 @@ class LoginViewController: UIViewController {
             
             // When 'OK' is clicked, the alert is dismissed
             alert.dismiss(animated: true, completion: nil)
-            
-            print("[Alert Closed]")
         }))
         
         // Presenting the alert
