@@ -14,6 +14,7 @@
 		58939D6E21F707CF0062B40C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58939D6C21F707CF0062B40C /* Main.storyboard */; };
 		58939D7021F707D10062B40C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58939D6F21F707D10062B40C /* Assets.xcassets */; };
 		58939D7321F707D10062B40C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58939D7121F707D10062B40C /* LaunchScreen.storyboard */; };
+		58945FDB2201DE95006DE19B /* ligands.txt in Resources */ = {isa = PBXBuildFile; fileRef = 58945FDA2201DE95006DE19B /* ligands.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		58939D6F21F707D10062B40C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58939D7221F707D10062B40C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		58939D7421F707D10062B40C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		58945FDA2201DE95006DE19B /* ligands.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ligands.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				5854E19F21FF412F00B23C7B /* TableViewController.swift */,
 				58939D6C21F707CF0062B40C /* Main.storyboard */,
 				58939D6F21F707D10062B40C /* Assets.xcassets */,
+				58945FDA2201DE95006DE19B /* ligands.txt */,
 				58939D7121F707D10062B40C /* LaunchScreen.storyboard */,
 				58939D7421F707D10062B40C /* Info.plist */,
 			);
@@ -131,6 +134,7 @@
 				58939D7321F707D10062B40C /* LaunchScreen.storyboard in Resources */,
 				58939D7021F707D10062B40C /* Assets.xcassets in Resources */,
 				58939D6E21F707CF0062B40C /* Main.storyboard in Resources */,
+				58945FDB2201DE95006DE19B /* ligands.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

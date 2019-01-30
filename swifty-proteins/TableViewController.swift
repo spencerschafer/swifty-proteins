@@ -10,29 +10,41 @@ import UIKit
 
 class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var array: [String] = ["1", "2", "3", "4", "5"]
-    
+    var proteins: [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
         self.navigationItem.title = "Ligands";
+        readTextFile()
+    }
+    
+    func readTextFile() {
+        //        let filePath = Bundle.main.path(forResource: "ligands", ofType: "txt")
+        let path = Bundle.main.path(forResource: "ligands", ofType: "txt")
+        let fileManager = FileManager.default
+        
+        if fileManager.fileExists(atPath: path!) {
+            do {
+                let text = try String(contentsOfFile: path!, encoding: String.Encoding.utf8)
+                self.proteins = text.components(separatedBy: "\n")
+                print(proteins)
+            } catch {
+                print("File not found")
+            }
+        } else {
+            print("ligands.txt not found")
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return proteins.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let referenceCell =  tableView.dequeueReusableCell(withIdentifier: "prototypeCell", for: indexPath)
         
-        let label = "[ " + array[indexPath.row] + " ]"
-        referenceCell.textLabel?.text = label
+        referenceCell.textLabel?.text = proteins[indexPath.row]
         return referenceCell
     }
-    
-    @IBAction func backButton(_ sender: Any) {
-        performSegue(withIdentifier: "backButtonSegue", sender: self)
-    }
-    
 }
