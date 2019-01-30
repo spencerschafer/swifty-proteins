@@ -9,7 +9,7 @@
 import UIKit
 import LocalAuthentication
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -33,9 +33,19 @@ class LoginViewController: UIViewController {
         super.viewWillDisappear(animated)
     }
 
+    // Use button to perform segue
     @IBAction func buttonGo(_ sender: Any) {
-        
-        // Perform authentication with Username and Password instead
+        authenticateWithTextInput()
+    }
+    
+    // Use return key to perform segue
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        authenticateWithTextInput()
+        return true
+    }
+    
+    // Perform authentication with Username and Password instead
+    func authenticateWithTextInput() {
         if (usernameTextField.text == "admin" && passwordTextField.text == "admin" ) {
             //Segue to TableViewController
             self.performSegue(withIdentifier: "goButtonSegue", sender: self)
@@ -50,17 +60,16 @@ class LoginViewController: UIViewController {
             self.authenticationFailedAlert()
         }
     }
-    
+
+    // Checking if device can be authenticated using TouchID / FaceID
     func authenticateWithTouchID() {
         let context:LAContext = LAContext()
-        
-        // Checking if device can be authenticated using TouchID / FaceID
         if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: nil) {
             
             // TODO: Check for faceID/touchID here
             context.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Use fingerprint to verify.", reply: { (wasSuccess, error ) in
                 
-                // If fingerprint was valid
+                // If fingerprint was valid, otherwise user will need to use username/password
                 if wasSuccess {
                     //Segue to TableViewController
                     self.performSegue(withIdentifier: "goButtonSegue", sender: self)
@@ -73,7 +82,6 @@ class LoginViewController: UIViewController {
     }
     
     func authenticationFailedAlert() {
-        
         // Creating the alert
         let alert = UIAlertController(title: "Incorrect username or password", message: "Please try again.", preferredStyle: .alert)
         
