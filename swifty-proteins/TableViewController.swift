@@ -16,6 +16,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        self.navigationItem.title = "Ligands";
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
