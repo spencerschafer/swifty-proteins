@@ -20,7 +20,10 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        // Changing title of TableView
         self.navigationItem.title = "Ligands";
+        
+        // Setting cursor to search bar
         proteinSearchBar.becomeFirstResponder()
         readTextFile()
     }
@@ -58,16 +61,18 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // If search bar is currently in use, count the list of returned search results, else count the list of proteins
         if searchBarInUse {
             return searchList.count
+        } else {
+            return proteinList.count
         }
-        
-        return proteinList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let referenceCell =  tableView.dequeueReusableCell(withIdentifier: "prototypeCell", for: indexPath)
-        
+
+        // If search bar is currently in use, add searched text to TableView, else use list of proteins
         if searchBarInUse {
             referenceCell.textLabel?.text = searchList[indexPath.row]
         } else {
@@ -77,13 +82,16 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // Checking if search bar contains text
         if searchBar.text == nil || searchBar.text == "" {
             searchBarInUse = false
             proteinTableView.reloadData()
         } else {
             searchBarInUse = true
+            
+            // Store searched protein if present
             searchList = proteinList.filter{ $0.contains(searchText.uppercased()) }
-//            print(proteinList.filter{ $0.contains(searchText.uppercased()) })
+            //            print(proteinList.filter{ $0.contains(searchText.uppercased()) })
             proteinTableView.reloadData()
         }
     }
