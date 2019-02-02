@@ -12,8 +12,8 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet weak var proteinSearchBar: UISearchBar!
     @IBOutlet weak var proteinTableView: UITableView!
-    var isSearching: Bool = false
-    var proteins: [String] = []
+    var searchBarInUse: Bool = false
+    var proteinList: [String] = []
     var searchList: [String] = []
     
     override func viewDidLoad() {
@@ -31,7 +31,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
             do {
                 let filePath = Bundle.main.path(forResource: "ligands", ofType: "txt")
                 let fileContents = try String(contentsOfFile: filePath!, encoding: String.Encoding.utf8)
-                self.proteins = fileContents.components(separatedBy: "\n")
+                self.proteinList = fileContents.components(separatedBy: "\n")
             } catch {
                 print("[ Error : TableViewController.readTextFile() ] - Unable to read file.")
                 self.readTextFileFailedAlert(title: "Reading Error", message: "Unable to read file.")
@@ -58,31 +58,32 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isSearching {
+        if searchBarInUse {
             return searchList.count
         }
         
-        return proteins.count
+        return proteinList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let referenceCell =  tableView.dequeueReusableCell(withIdentifier: "prototypeCell", for: indexPath)
         
-        if isSearching {
+        if searchBarInUse {
             referenceCell.textLabel?.text = searchList[indexPath.row]
         } else {
-            referenceCell.textLabel?.text = proteins[indexPath.row]
+            referenceCell.textLabel?.text = proteinList[indexPath.row]
         }
         return referenceCell
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text == nil || searchBar.text == "" {
-            isSearching = false
+            searchBarInUse = false
             proteinTableView.reloadData()
         } else {
-            isSearching = true
-            searchList = proteins.filter({$0.contains((searchBar.text?.uppercased())!)})
+            searchBarInUse = true
+            searchList = proteinList.filter{ $0.contains(searchText.uppercased()) }
+//            print(proteinList.filter{ $0.contains(searchText.uppercased()) })
             proteinTableView.reloadData()
         }
     }
